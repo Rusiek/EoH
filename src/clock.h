@@ -1,6 +1,5 @@
 #ifndef CLOCK_H
 #define CLOCK_H
-#include "human.h"
 
 struct Time{
     int year;
@@ -21,7 +20,5 @@ void Time::next_month() {
     if (month == 12)
         month = 0, ++year;
 }
-
-
 
 #endif
