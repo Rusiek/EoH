@@ -7,6 +7,7 @@ struct Human{
 
     Human(bool&);
     bool die(const int&, int);
+    Human& operator=(Human &other); 
 };
 
 Human::Human(bool& input) {
@@ -16,6 +17,12 @@ Human::Human(bool& input) {
 
 bool Human::die(const int& prob, int rand) {
     return rand <= prob;
+}
+
+Human& Human::operator=(Human &other){
+    this->sex = other.sex;
+    this->age = other.age;
+    return *this;
 }
 
 #endif
