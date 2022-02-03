@@ -4,7 +4,7 @@
 constexpr size_t zero = 0;
 constexpr size_t months_num = 12;
 
-Time::Time(size_t m = zero, size_t y = zero) {
+Time::Time(size_t m, size_t y) {
     this->year = y + (m / months_num);
     this->month = m % months_num;
 }
