@@ -8,7 +8,7 @@ private:
     size_t month;
 
 public:
-    Time(size_t, size_t);
+    Time(size_t = 0, size_t = 0);
     ~Time();
     Time& operator=(const Time&);
 
