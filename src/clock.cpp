@@ -140,7 +140,7 @@ void Clock::next_month() {
 
 /**
  * @brief 
- * Prints the clock values in above format 
+ * Prints the clock values in the following format 
  * (with an endline in the end):
  * Year  : "value"
  * Month : "value"
