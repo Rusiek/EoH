@@ -2,24 +2,27 @@
 #define CLOCK_H
 #define size_t unsigned long long
 
-struct Time{
+struct Clock{
 private:
-    size_t year;
-    size_t month;
+    size_t  year;
+    size_t  month;
 
 public:
-    Time(size_t = 0, size_t = 0);
-    ~Time();
-    Time& operator=(const Time&);
+    Clock(const size_t = 0, const size_t = 0);
+    ~Clock();
+    Clock& operator =   (const Clock&);
 
-    bool operator==(const Time&);
-    bool operator>(const Time&);
-    bool operator<(const Time&);
-    bool operator>=(const Time&);
-    bool operator<=(const Time&);
+    bool operator   ==  (const Clock&) const;
+    bool operator   !=  (const Clock&) const;
+    bool operator   >   (const Clock&) const;
+    bool operator   <   (const Clock&) const;
+    bool operator   >=  (const Clock&) const;
+    bool operator   <=  (const Clock&) const;
 
     void next_month();
-    void print();
+    void print() const;
+    size_t get_year() const;
+    size_t get_month() const;
 };
 
 #endif
