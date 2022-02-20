@@ -1,35 +1,44 @@
-import numpy as np
- 
+def add(A, B):
+    C = [[A[i][j] + B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
+    return C
+
+def sub(A, B):
+    C = [[A[i][j] - B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
+    return C
+
+def merge_v(A, B):
+    C = []
+    for i in A:
+        C.append(i)
+    for i in B:
+        C.append(i)
+    return C
+
+def merge_h(A, B): 
+    C = []
+    for i in range(len(A)):
+        temp = []
+        for j in A[i]:
+            temp.append(j)
+        for j in B[i]:
+            temp.append(j)
+        C.append(temp)
+    return C
+
 def split(M):
-    half = len(M) // 2
-    return M[:half][:half], M[:half][half:], M[half:][:half], M[half:][half:]
- 
-def strassen(A, B):
-    if len(A) == 1 or len(B) == 1: 
-        return A * B
- 
-    a11, a12, a21, a22 = split(A)
-    b11, b12, b21, b22 = split(B)
- 
-    m1 = strassen(a11 + a22 , b11 + b22) 
-    m2 = strassen(a21 + a22 , b11)       
-    m3 = strassen(a11       , b12 - b22)       
-    m4 = strassen(a22       , b21 - b11)       
-    m5 = strassen(a11 + a12 , b22)       
-    m6 = strassen(a21 - a11 , b11 + b12) 
-    m7 = strassen(a12 - a22 , b21 + b22) 
- 
-    c11 = m1 + m4 - m5 + m7
-    c12 = m3 + m5
-    c21 = m2 + m4
-    c22 = m1 - m2 + m3 + m6 
- 
-    output = np.vstack((np.hstack((c11, c21)), np.hstack((c12, c22))))
- 
-    return output
+    h_row = len(M[0]) // 2
+    h_col = len(M) // 2
+    
+    M11 = [[M[i][j] for j in range(h_row)] for i in range(h_col)]
+    M12 = [[M[i][j] for j in range(h_row, len(M[0]))] for i in range(h_col)]
+    M21 = [[M[i][j] for j in range(h_row)] for i in range(h_col, len(M))]
+    M22 = [[M[i][j] for j in range(h_row, len(M[0]))] for i in range(h_col, len(M))]
+    
+    return M11, M12, M21, M22
 
 
-A = np.array([[1, 2, 3, 2], [4, 5, 6, 2], [1, 3, 3, 2], [2, 9, 2, 1]])
-B = np.array([[3, 2, 2, 1], [1, 3, 2, 1], [1, 7, 2, 0], [3, 3, 2, 2]])
+# def strassen(A, B):
 
-print(strassen(A, B))
+for i in split([[1, 2, 3, 4, 6], [4, 5, 6, 7, 2], [1, 3, 5, 6, 1], [9, 8, 7, 6, 5], [1, 3, 5, 3, 2]]):
+    print(i)
+    
