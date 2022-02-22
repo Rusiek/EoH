@@ -47,6 +47,19 @@ Clock& Clock::operator=(const Clock& other) {
 
 /**
  * @brief 
+ * Assigment operator
+ * 
+ * @param other && @return Clock& 
+ * Sets clock at "other" years
+ */
+Clock& Clock::operator=(const size_t& other) {
+    this->year = other;
+    this->month = zero;
+    return *this;
+}
+
+/**
+ * @brief 
  * Comparison operator
  * Returns true if both clocks run 
  * for the same amount of time
