@@ -1,8 +1,8 @@
-def x(n, k, a, x, b = 0):
+def x(n, k, a, x):
     if n <= k:
         return x[n]
     
-    output = b
+    output = 0
     for i in range(1, k + 1):
-        output += a[i] * x(n - i, k, a, x, b)
+        output += a[i] * x(n - i, k, a, x)
     return output
