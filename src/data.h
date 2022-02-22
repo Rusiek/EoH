@@ -15,9 +15,9 @@ namespace data {
     constexpr size_t eye_poss       =   3;
     constexpr size_t tounge_poss    =   2;
 
-    constexpr char hair_color[2]    =   {'D', 'L'};
-    constexpr char eye_color[3]     =   {'B', 'G', 'S'};
-    constexpr char tounge_roll[2]   =   {'Y', 'N'};
+    constexpr char hair_color[2]    =   {'D', 'L'};         // Dark     / Light
+    constexpr char eye_color[3]     =   {'B', 'G', 'S'};    // Brown    / Green     / Sky
+    constexpr char tounge_roll[2]   =   {'Y', 'N'};         // Yes      / No
 }
 
 #endif
