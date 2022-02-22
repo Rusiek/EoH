@@ -11,6 +11,7 @@ public:
     Clock(const size_t = 0, const size_t = 0);
     ~Clock();
     Clock& operator =   (const Clock&);
+    Clock& operator =   (const size_t&);
 
     bool operator   ==  (const Clock&) const;
     bool operator   !=  (const Clock&) const;
