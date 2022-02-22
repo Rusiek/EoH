@@ -10,28 +10,73 @@ def merge_v(A, B):
     C = []
     for i in A:
         C.append(i)
+
     for i in B:
         C.append(i)
+
     return C
 
-def merge_h(A, B): 
+def merge_h(A, B):
     C = []
     for i in range(len(A)):
-        temp = []
-        for j in A[i]:
-            temp.append(j)
-        for j in B[i]:
-            temp.append(j)
-        C.append(temp)
+        C.append(A[i] + B[i])
+
     return C
 
+def make(A):
+    i = 1
+    while i < len(A):
+        i *= 2
+
+    output = [[0 for k in range(i)] for j in range(i)]
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            output[i][j] = A[i][j]
+
+    return output
+
 def split(M):
-    h_row = len(M[0]) // 2
-    h_col = len(M) // 2
-    
-    M11 = [[M[i][j] for j in range(h_row)]              for i in range(h_col)]
-    M12 = [[M[i][j] for j in range(h_row, len(M[0]))]   for i in range(h_col)]
-    M21 = [[M[i][j] for j in range(h_row)]              for i in range(h_col, len(M))]
-    M22 = [[M[i][j] for j in range(h_row, len(M[0]))]   for i in range(h_col, len(M))]
-    
-    return M11, M12, M21, M22
+    m11 = [[M[i][j] for j in range(len(M) // 2)]            for i in range(len(M) // 2)]
+    m12 = [[M[i][j] for j in range(len(M) // 2, len(M))]    for i in range(len(M) // 2)]
+    m21 = [[M[i][j] for j in range(len(M) // 2)]            for i in range(len(M) // 2, len(M))]
+    m22 = [[M[i][j] for j in range(len(M) // 2, len(M))]    for i in range(len(M) // 2, len(M))]
+    return m11, m12, m21, m22
+
+def multi(A, B):
+    if len(A) == 1:
+        output = A[0][0] * B[0][0]
+        return [[output]]
+
+    a11, a12, a21, a22 = split(A)
+    b11, b12, b21, b22 = split(B)
+
+    m1 = multi(add(a11, a22), add(b11, b22))
+    m2 = multi(add(a21, a22), b11)
+    m3 = multi(a11          , sub(b12, b22))
+    m4 = multi(a22          , sub(b21, b11))
+    m5 = multi(add(a11, a12), b22)
+    m6 = multi(sub(a21, a11), add(b11, b12))
+    m7 = multi(sub(a12, a22), add(b21, b22))
+
+    c11 = add(sub(add(m1, m4), m5), m7)
+    c12 = add(m3, m5)
+    c21 = add(m2, m4)
+    c22 = add(add(sub(m1, m2), m3), m6)
+
+    output = merge_v(merge_h(c11, c12), merge_h(c21, c22))
+
+    return output
+
+def strassen(A, B):
+    X, Y = make(A), make(B)
+    print(X, Y)
+    temp = multi(X, Y)
+    output = [[temp[i][j] for j in range(len(A))] for i in range(len(A))]
+    return output
+
+
+A = [[1, 2, 3], [2, 1, 1], [8, 6, 4]]
+B = [[1, 0, 0], [0, 3, 2], [9, -2, 2]]
+
+print(strassen(A, B))
