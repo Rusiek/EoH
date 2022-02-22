@@ -1,4 +1,3 @@
-
 def x(n, k, a, x, b = 0):
     if n <= k:
         return x[n]
