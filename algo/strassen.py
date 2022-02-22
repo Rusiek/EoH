@@ -74,9 +74,3 @@ def strassen(A, B):
     temp = multi(X, Y)
     output = [[temp[i][j] for j in range(len(A))] for i in range(len(A))]
     return output
-
-
-A = [[1, 2, 3], [2, 1, 1], [8, 6, 4]]
-B = [[1, 0, 0], [0, 3, 2], [9, -2, 2]]
-
-print(strassen(A, B))
