@@ -15,7 +15,7 @@ namespace ur {
 }
 
 ultra_rabit::ultra_rabit() {
-    this->age = 25;
+    this->age = 3;
     this->eye = ur::eye[rand() % ur::EYE_NUM];
     this->ROTP = false;
 }
