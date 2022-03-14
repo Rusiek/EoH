@@ -28,11 +28,6 @@ for i in range(len(output)):
                 output[i][j][k] /= output[i][j][3]
                 output[i][j][k] = round(output[i][j][k], 5)
 
-for i in output[0]:
-    print(i)
-print(len(output[0]))
-print(len(output[0][0]))
-
 x_axis = [5 * i for i in range(len(output[0]))]
 
 for i in range(len(output)):
