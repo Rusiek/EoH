@@ -1,1 +1,0 @@
-# The Expansion of Humanity
